@@ -31,7 +31,7 @@ public class Posizioni {
         pallaY = screenY - ALTEZZA_PALLA;
     }
 
-    public Posizioni getInstance() {
+    public static Posizioni getInstance() {
         if(Posizioni.instance == null)
             Posizioni.instance = new Posizioni();
         return Posizioni.instance;
