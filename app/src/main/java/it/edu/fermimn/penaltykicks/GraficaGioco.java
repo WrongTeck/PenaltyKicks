@@ -23,8 +23,8 @@ public class GraficaGioco extends View {
 
     private void inizializza() {
         paint = new Paint();  // possiamo pensare all'oggetto paint come al "pennello" che ci server per disegnare
-        imgPorta = BitmapFactory.decodeResource(getResources(), R.drawable.porta_nobg_downscaled );
-        imgPortiere = BitmapFactory.decodeResource(getResources(), R.drawable.portiere_sprite1 );
+        imgPorta = BitmapFactory.decodeResource(getResources(), R.drawable.porta_sprite);
+        imgPortiere = BitmapFactory.decodeResource(getResources(), R.drawable.portiere_sprite1);
         imgPalla = BitmapFactory.decodeResource(getResources(), R.drawable.ball_sprite );
     }
 
@@ -53,9 +53,9 @@ public class GraficaGioco extends View {
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawBitmap(imgPorta,0,0,paint);
-        canvas.drawBitmap(imgPalla,0,0,paint);
-        canvas.drawBitmap(imgPortiere,0,0,paint);
+        canvas.drawBitmap(imgPorta,100,50,paint);
+        canvas.drawBitmap(imgPalla,450,1700,paint);
+        canvas.drawBitmap(imgPortiere,400,100,paint);
 
     }
 }
