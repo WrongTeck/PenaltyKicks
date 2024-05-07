@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.text.Transliterator;
+import android.view.View;
 
 public class Posizioni {
     private static Posizioni instance = null;
@@ -11,6 +12,7 @@ public class Posizioni {
     private int portiereX, portiereY;
     private int portaX, portaY;
     private int pallaX, pallaY;
+    private View view;
 
     private final int ALTEZZA_PALLA = 100;
 
@@ -35,6 +37,14 @@ public class Posizioni {
         if(Posizioni.instance == null)
             Posizioni.instance = new Posizioni();
         return Posizioni.instance;
+    }
+
+    public void setViewInstance(View v) {
+        this.view = v;
+    }
+
+    public void refresh() {
+        this.view.invalidate();
     }
 
     public void relativePortiere(int x) {
