@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -37,6 +39,7 @@ public class GraficaGioco extends View {
 
         super(context, attrs);
         inizializza();
+        setBackgroundColor(Color.rgb(00,160,00));
     }
 
     public GraficaGioco(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -52,6 +55,17 @@ public class GraficaGioco extends View {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
+
+        int h = getHeight();
+        int w = getWidth();
+
+        paint.setColor(Color.WHITE);  // imposto il colore del pennello
+        paint.setStrokeWidth(10); // spessore del pennello
+
+        canvas.drawLine(0, 530, w, 530, paint);
+        RectF oval2 = new RectF(460, 1950, 660, 1850);
+        canvas.drawOval(oval2,paint);
+
 
         canvas.drawBitmap(imgPorta,100,50,paint);
         canvas.drawBitmap(imgPalla,450,1700,paint);
