@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -77,5 +78,11 @@ public class GraficaGioco extends View {
         canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
         canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
 
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
     }
 }
