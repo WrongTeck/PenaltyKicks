@@ -102,6 +102,14 @@ public class Posizioni {
         return portiereY;
     }
 
+    public int touchingBorder() {
+        if(portiereX == portaX + 20)
+            return - 1;
+        if(portiereX == portaX + imgPorta.getWidth() - 20 - imgPortiere.getWidth())
+            return 1;
+        return 0;
+    }
+
     public int getPortaX() {
         return portaX;
     }
