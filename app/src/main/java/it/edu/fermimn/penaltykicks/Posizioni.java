@@ -12,9 +12,35 @@ public class Posizioni {
     private int portiereX, portiereY;
     private int portaX, portaY;
     private int pallaX, pallaY;
+
+    private int ovaleXStart;
+
+    public int getOvaleXStart() {
+        return ovaleXStart;
+    }
+
+    public int getOvaleYStart() {
+        return ovaleYStart;
+    }
+
+    public int getOvaleXStop() {
+        return ovaleXStop;
+    }
+
+    public int getOvaleYStop() {
+        return ovaleYStop;
+    }
+
+    private int ovaleYStart;
+    private int ovaleXStop;
+    private int ovaleYStop;
     private View view;
 
-    private final int ALTEZZA_PALLA = 200;
+    public int getALTEZZA_PALLA() {
+        return ALTEZZA_PALLA;
+    }
+
+    private final int ALTEZZA_PALLA = 150;
 
     private Bitmap imgPorta,
         imgPortiere,
@@ -46,7 +72,11 @@ public class Posizioni {
         portiereX = screenX/2 - imgPortiere.getWidth()/2;
         portiereY = imgPorta.getHeight() - imgPortiere.getHeight() + portaY;
         pallaX = screenX/2 - imgPalla.getWidth()/2;
-        pallaY = screenY - ALTEZZA_PALLA;
+        pallaY = screenY - imgPalla.getHeight() - ALTEZZA_PALLA;
+        ovaleXStart = screenX/2 - 100;
+        ovaleXStop = screenX/2 + 100;
+        ovaleYStart = screenY - imgPalla.getHeight() + ALTEZZA_PALLA/2 - 90;
+        ovaleYStop = screenY - imgPalla.getHeight() + ALTEZZA_PALLA/2 + 10;
     }
 
     public void refresh() {

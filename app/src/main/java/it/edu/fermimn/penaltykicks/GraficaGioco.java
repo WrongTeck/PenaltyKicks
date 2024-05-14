@@ -23,12 +23,17 @@ public class GraficaGioco extends View {
     private Bitmap imgPortiere;
     private Bitmap imgPorta;
 
+    private RectF oval;
+
     private void inizializza() {
         paint = new Paint();  // possiamo pensare all'oggetto paint come al "pennello" che ci server per disegnare
         imgPorta = BitmapFactory.decodeResource(getResources(), R.drawable.porta_sprite);
         imgPortiere = BitmapFactory.decodeResource(getResources(), R.drawable.portiere_sprite1);
         imgPalla = BitmapFactory.decodeResource(getResources(), R.drawable.ball_sprite );
-        Posizioni.getInstance().setViewInstance(this);
+        Posizioni pos = Posizioni.getInstance();
+        pos.setViewInstance(this);
+
+        oval = new RectF(pos.getOvaleXStart(), pos.getOvaleYStart(), pos.getOvaleXStop(), pos.getOvaleYStop());
     }
 
     public GraficaGioco(Context context) {
@@ -56,6 +61,7 @@ public class GraficaGioco extends View {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
+        Posizioni pos = Posizioni.getInstance();
 
         int h = getHeight();
         int w = getWidth();
@@ -63,11 +69,10 @@ public class GraficaGioco extends View {
         paint.setColor(Color.WHITE);  // imposto il colore del pennello
         paint.setStrokeWidth(10); // spessore del pennello
 
-        canvas.drawLine(0, 530, w, 530, paint);
-        RectF oval2 = new RectF(460, 1950, 660, 1850);
-        canvas.drawOval(oval2,paint);
+        canvas.drawLine(0, pos.getPortaY() + imgPorta.getHeight() - 5, w, pos.getPortaY() + imgPorta.getHeight() - 5, paint);
+        canvas.drawOval(oval,paint);
 
-        Posizioni pos = Posizioni.getInstance();
+
         canvas.drawBitmap(imgPorta,pos.getPortaX(),pos.getPortaY(),paint);
         canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
         canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
