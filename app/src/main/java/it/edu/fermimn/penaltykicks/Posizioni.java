@@ -14,7 +14,7 @@ public class Posizioni {
     private int pallaX, pallaY;
     private View view;
 
-    private final int ALTEZZA_PALLA = 100;
+    private final int ALTEZZA_PALLA = 200;
 
     private Bitmap imgPorta,
         imgPortiere,
@@ -42,9 +42,9 @@ public class Posizioni {
         screenX = v.getResources().getDisplayMetrics().widthPixels;
         screenY = v.getResources().getDisplayMetrics().heightPixels;
         portaX = screenX/2 - imgPorta.getWidth()/2;
-        portaY = 20;
+        portaY = 100;
         portiereX = screenX/2 - imgPortiere.getWidth()/2;
-        portaY = imgPorta.getHeight() - imgPortiere.getHeight();
+        portiereY = imgPorta.getHeight() - imgPortiere.getHeight() + portaY;
         pallaX = screenX/2 - imgPalla.getWidth()/2;
         pallaY = screenY - ALTEZZA_PALLA;
     }
@@ -56,7 +56,7 @@ public class Posizioni {
     public void relativePortiere(int x) {
         x += portiereX;
         int minPorta = portaX + 20;
-        int maxPorta = portaY + imgPorta.getWidth() - 20 - imgPortiere.getWidth();
+        int maxPorta = portaX + imgPorta.getWidth() - 20 - imgPortiere.getWidth();
         if(minPorta > x)
             x = minPorta;
         else if(maxPorta < x)

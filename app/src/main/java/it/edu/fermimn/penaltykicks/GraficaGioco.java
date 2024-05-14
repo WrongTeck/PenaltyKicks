@@ -67,10 +67,10 @@ public class GraficaGioco extends View {
         RectF oval2 = new RectF(460, 1950, 660, 1850);
         canvas.drawOval(oval2,paint);
 
-
-        canvas.drawBitmap(imgPorta,100,50,paint);
-        canvas.drawBitmap(imgPalla,450,1700,paint);
-        canvas.drawBitmap(imgPortiere,400,100,paint);
+        Posizioni pos = Posizioni.getInstance();
+        canvas.drawBitmap(imgPorta,pos.getPortaX(),pos.getPortaY(),paint);
+        canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
+        canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
 
     }
 }
