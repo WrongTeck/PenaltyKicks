@@ -16,21 +16,16 @@ public class Posizioni {
 
     private final int ALTEZZA_PALLA = 100;
 
-    private final Bitmap imgPorta = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.porta_sprite),
-        imgPortiere = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.portiere_sprite1),
-        imgPalla = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ball_sprite );
+    private Bitmap imgPorta,
+        imgPortiere,
+        imgPalla;
 
-    private final int
-            screenX = Resources.getSystem().getDisplayMetrics().widthPixels,
-            screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+    private int
+            screenX,
+            screenY;
 
     private Posizioni() {
-        portaX = screenX/2 - imgPorta.getWidth()/2;
-        portaY = 20;
-        portiereX = screenX/2 - imgPortiere.getWidth()/2;
-        portaY = imgPorta.getHeight() - imgPortiere.getHeight();
-        pallaX = screenX/2 - imgPalla.getWidth()/2;
-        pallaY = screenY - ALTEZZA_PALLA;
+
     }
 
     public static Posizioni getInstance() {
@@ -41,6 +36,17 @@ public class Posizioni {
 
     public void setViewInstance(View v) {
         this.view = v;
+        this.imgPorta = BitmapFactory.decodeResource(view.getResources(), R.drawable.porta_sprite);
+        this.imgPortiere = BitmapFactory.decodeResource(view.getResources(), R.drawable.portiere_sprite1);
+        this.imgPalla = BitmapFactory.decodeResource(view.getResources(), R.drawable.ball_sprite );
+        screenX = v.getResources().getDisplayMetrics().widthPixels;
+        screenY = v.getResources().getDisplayMetrics().heightPixels;
+        portaX = screenX/2 - imgPorta.getWidth()/2;
+        portaY = 20;
+        portiereX = screenX/2 - imgPortiere.getWidth()/2;
+        portaY = imgPorta.getHeight() - imgPortiere.getHeight();
+        pallaX = screenX/2 - imgPalla.getWidth()/2;
+        pallaY = screenY - ALTEZZA_PALLA;
     }
 
     public void refresh() {
