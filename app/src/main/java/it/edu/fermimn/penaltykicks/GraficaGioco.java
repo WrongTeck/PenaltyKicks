@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 
 public class GraficaGioco extends View {
 
-    int xpalla, ypalla, xportiere, yportiere;
+    int xpalla, ypalla, xportiere, yportipere;
 
     private Paint paint;
     private Bitmap imgPalla;
@@ -28,6 +28,7 @@ public class GraficaGioco extends View {
         imgPorta = BitmapFactory.decodeResource(getResources(), R.drawable.porta_sprite);
         imgPortiere = BitmapFactory.decodeResource(getResources(), R.drawable.portiere_sprite1);
         imgPalla = BitmapFactory.decodeResource(getResources(), R.drawable.ball_sprite );
+        Posizioni.getInstance().setViewInstance(this);
     }
 
     public GraficaGioco(Context context) {
