@@ -90,16 +90,6 @@ public class GraficaGioco extends View {
 
         canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
         canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
-
-        paint.setColor(Color.RED);
-        canvas.drawOval(endX,endY, endX+50,endY+50,paint);
-
-
-        canvas.drawLine(pos.getPallaX()+imgPalla.getWidth()/2,pos.getPallaY()+imgPorta.getHeight()/4,endX+20,endY+20,paint);
-       deltaY=endY-pos.getPallaY();
-        deltaX=endX-pos.getPallaX();
-
-        canvas.drawBitmap(imgPalla,(int)(pos.getPallaX()+deltaX*0.5),(int)(pos.getPallaY()+deltaY*0.5),paint);
     }
 
     @Override
@@ -122,7 +112,7 @@ public class GraficaGioco extends View {
                 if(this.isMoving) {
                     int stopX = (int) event.getX();
                     int stopY = (int) event.getY();
-
+                    new ThreadPalla(this.endX, this.endY, stopX, stopY).start();
 
                 }
                 return true;

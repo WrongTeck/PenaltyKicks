@@ -126,6 +126,14 @@ public class Posizioni {
         return pallaY;
     }
 
+    public void setPallaY(int y) {
+        this.pallaY = y;
+    }
+
+    public void setPallaX(int x) {
+        this.pallaX = x;
+    }
+
     public boolean ballIsTouchedByPortiere() {
         return false;
     }
