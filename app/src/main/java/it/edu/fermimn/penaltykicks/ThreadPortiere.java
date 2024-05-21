@@ -2,7 +2,7 @@ package it.edu.fermimn.penaltykicks;
 
 import java.util.Random;
 
-public class ThreadPortiere extends Thread {
+public class ThreadPortiere extends Thread { 
     @Override
     public void run() {
         super.run();

@@ -1,5 +1,6 @@
 package it.edu.fermimn.penaltykicks;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,8 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +28,11 @@ public class GraficaGioco extends View {
     private Bitmap imgPorta;
 
     private RectF oval;
+
+    private int startX, startY, endX,endY;
+
+    private int deltaX,deltaY;
+    private boolean isMoving = false;
 
     private void inizializza() {
         paint = new Paint();  // possiamo pensare all'oggetto paint come al "pennello" che ci server per disegnare
@@ -79,14 +87,48 @@ public class GraficaGioco extends View {
 
 
         canvas.drawBitmap(imgPorta,pos.getPortaX(),pos.getPortaY(),paint);
+
         canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
         canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
 
-    }
+        paint.setColor(Color.RED);
+        canvas.drawOval(endX,endY, endX+50,endY+50,paint);
 
+
+        canvas.drawLine(pos.getPallaX()+imgPalla.getWidth()/2,pos.getPallaY()+imgPorta.getHeight()/4,endX+20,endY+20,paint);
+       deltaY=endY-pos.getPallaY();
+        deltaX=endX-pos.getPallaX();
+
+        canvas.drawBitmap(imgPalla,(int)(pos.getPallaX()+deltaX*0.5),(int)(pos.getPallaY()+deltaY*0.5),paint);
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
+
+        switch( event.getAction() ) {
+
+            case (MotionEvent.ACTION_DOWN) :
+                this.endX = (int) event.getX();
+                this.endY = (int) event.getY();
+
+
+                return true;
+
+            case (MotionEvent.ACTION_MOVE) :
+                this.isMoving = true;
+                return true;
+
+            case (MotionEvent.ACTION_UP) :
+                if(this.isMoving) {
+                    int stopX = (int) event.getX();
+                    int stopY = (int) event.getY();
+
+
+                }
+                return true;
+
+            default :
+                return super.onTouchEvent(event);
+        }
     }
 }
