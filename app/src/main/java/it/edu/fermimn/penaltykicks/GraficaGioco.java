@@ -70,8 +70,12 @@ public class GraficaGioco extends View {
         paint.setColor(Color.WHITE);  // imposto il colore del pennello
         paint.setStrokeWidth(10); // spessore del pennello
 
-        canvas.drawLine(0, pos.getPortaY() + imgPorta.getHeight() - 5, w, pos.getPortaY() + imgPorta.getHeight() - 5, paint);
+        canvas.drawLine(0, pos.getPortaY() + imgPorta.getHeight() -5, w, pos.getPortaY() + imgPorta.getHeight() - 5, paint);
+        //canvas.drawLine(0, pos.getPortaY() + imgPorta.getHeight() -190, w, pos.getPortaY() + imgPorta.getHeight() - 190 , paint);
         canvas.drawOval(oval,paint);
+
+        paint.setColor(Color.rgb(130,210,255));
+        canvas.drawRect(0,0,w,pos.getPortaY()+300,paint);
 
 
         canvas.drawBitmap(imgPorta,pos.getPortaX(),pos.getPortaY(),paint);
