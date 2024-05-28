@@ -79,6 +79,13 @@ public class Posizioni {
         ovaleYStop = screenY - imgPalla.getHeight() + ALTEZZA_PALLA/2 + 10;
     }
 
+    public void setViewInstanceForBall(View v){
+        this.view = v;
+        this.imgPalla = BitmapFactory.decodeResource(view.getResources(), R.drawable.ball_sprite );
+        pallaX = screenX/2 - imgPalla.getWidth()/2;
+        pallaY = screenY - imgPalla.getHeight() - ALTEZZA_PALLA;
+    }
+
     public void refresh() {
         this.view.invalidate();
     }

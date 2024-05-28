@@ -45,6 +45,14 @@ public class GraficaGioco extends View {
         oval = new RectF(pos.getOvaleXStart(), pos.getOvaleYStart(), pos.getOvaleXStop(), pos.getOvaleYStop());
     }
 
+    private void inizializzaPalla(){
+        paint = new Paint();
+        imgPalla = BitmapFactory.decodeResource(getResources(), R.drawable.ball_sprite );
+        Posizioni pos = Posizioni.getInstance();
+        pos.setViewInstanceForBall(this);
+
+    }
+
     public GraficaGioco(Context context) {
         super(context);
         inizializza();
@@ -116,15 +124,17 @@ public class GraficaGioco extends View {
             case (MotionEvent.ACTION_UP) :
                 if(this.isMoving) {
                     System.out.println("sono in ACTION UP");
+
                     int stopX = (int) event.getX();
                     int stopY = (int) event.getY();
                     new ThreadPalla(this.endX, this.endY, stopX, stopY).start();
-
+                    inizializzaPalla();
 
                 }
                 return true;
 
             default :
+
                 return super.onTouchEvent(event);
         }
     }

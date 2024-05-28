@@ -5,7 +5,7 @@ import android.util.Log;
 public class ThreadPalla extends Thread{
      private int startX, startY, stopX, stopY;
      private Posizioni pos = Posizioni.getInstance();
-     private int maxHeight = pos.getPortaY()+400 ;
+     private int maxHeight = pos.getPortaY() +400;
 
      private int deltaX, deltaY;
 
@@ -21,14 +21,14 @@ public class ThreadPalla extends Thread{
      @Override
      public void run() {
 
-          Log.d("","partenza thread");
-          Log.d("",""+maxHeight);
-          Log.d("",""+pos.getPallaY());
-          double factor = 0.1;
-          while(pos.getPallaY()>maxHeight){
+          Log.d("", "partenza thread");
+          Log.d("", "" + maxHeight);
+          Log.d("", "" + pos.getPallaY());
+          double factor = 0.05;
+          while (pos.getPallaY() > maxHeight) {
                try {
-                    Thread.sleep(100);
-               } catch(InterruptedException e) {
+                    Thread.sleep(50);
+               } catch (InterruptedException e) {
                     // Void
                }
 
@@ -43,15 +43,23 @@ public class ThreadPalla extends Thread{
 
                     canvas.drawBitmap(imgPalla,(int)(pos.getPallaX()+deltaX*0.5),(int)(pos.getPallaY()+deltaY*0.5),paint);
                 */
-               pos.setPallaX((int) (pos.getPallaX()+deltaX*factor));
-               pos.setPallaY((int) (pos.getPallaY()+deltaY*factor));
+               pos.setPallaX((int) (pos.getPallaX() + deltaX * factor));
+               pos.setPallaY((int) (pos.getPallaY() + deltaY * factor));
 
-               Log.d("","muovo palla");
+               Log.d("", "muovo palla");
 
-               factor += 0.1;
+               factor += 0.05;
 
                pos.refresh();
 
+          }
+     }
+
+          private boolean isToccata(int posPallaX,int posPallay){
+               if (posPallaX<=pos.getPortaX()&&posPallaX<=pos.getPallaX()+10) {
+                    return true;
+               }
+               return false;
           }
 
           // TODO: Controllo se la palla è in porta e non è toccata dal portiere
@@ -60,4 +68,4 @@ public class ThreadPalla extends Thread{
      }
 
 
-}
+
