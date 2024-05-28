@@ -24,7 +24,7 @@ public class ThreadPalla extends Thread{
           Log.d("", "partenza thread");
           Log.d("", "" + maxHeight);
           Log.d("", "" + pos.getPallaY());
-          double factor = 0.05;
+          double factor = 0.1;
           while (pos.getPallaY() > maxHeight) {
                try {
                     Thread.sleep(50);
@@ -48,7 +48,7 @@ public class ThreadPalla extends Thread{
 
                Log.d("", "muovo palla");
 
-               factor += 0.05;
+               factor += 0.1;
 
                pos.refresh();
 
