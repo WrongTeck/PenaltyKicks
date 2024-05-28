@@ -90,6 +90,9 @@ public class GraficaGioco extends View {
 
         canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
         canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
+
+
+
     }
 
     @Override
@@ -102,14 +105,17 @@ public class GraficaGioco extends View {
                 this.endY = (int) event.getY();
 
 
+
                 return true;
 
             case (MotionEvent.ACTION_MOVE) :
                 this.isMoving = true;
+                invalidate();
                 return true;
 
             case (MotionEvent.ACTION_UP) :
                 if(this.isMoving) {
+                    System.out.println("sono in ACTION UP");
                     int stopX = (int) event.getX();
                     int stopY = (int) event.getY();
                     new ThreadPalla(this.endX, this.endY, stopX, stopY).start();

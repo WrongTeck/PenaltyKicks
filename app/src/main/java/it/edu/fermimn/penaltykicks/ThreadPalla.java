@@ -1,9 +1,11 @@
 package it.edu.fermimn.penaltykicks;
 
+import android.util.Log;
+
 public class ThreadPalla extends Thread{
      private int startX, startY, stopX, stopY;
      private Posizioni pos = Posizioni.getInstance();
-     private int maxHeight = pos.getPortaY() + 300;
+     private int maxHeight = pos.getPortaY()+400 ;
 
      private int deltaX, deltaY;
 
@@ -18,10 +20,14 @@ public class ThreadPalla extends Thread{
 
      @Override
      public void run() {
-          double factor = 0.01;
-          while(pos.getPallaY() < maxHeight){
+
+          Log.d("","partenza thread");
+          Log.d("",""+maxHeight);
+          Log.d("",""+pos.getPallaY());
+          double factor = 0.1;
+          while(pos.getPallaY()>maxHeight){
                try {
-                    Thread.sleep(24/1000);
+                    Thread.sleep(100);
                } catch(InterruptedException e) {
                     // Void
                }
@@ -40,8 +46,11 @@ public class ThreadPalla extends Thread{
                pos.setPallaX((int) (pos.getPallaX()+deltaX*factor));
                pos.setPallaY((int) (pos.getPallaY()+deltaY*factor));
 
-               factor += 0.01;
+               Log.d("","muovo palla");
 
+               factor += 0.1;
+
+               pos.refresh();
 
           }
 
