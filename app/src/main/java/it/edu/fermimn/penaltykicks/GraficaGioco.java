@@ -120,6 +120,7 @@ public class GraficaGioco extends View {
                     int stopY = (int) event.getY();
                     new ThreadPalla(this.endX, this.endY, stopX, stopY).start();
 
+
                 }
                 return true;
 
