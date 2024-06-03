@@ -1,7 +1,5 @@
 package it.edu.fermimn.penaltykicks;
 
-import java.util.Random;
-
 public class ThreadPortiere extends Thread { 
     @Override
     public void run() {
@@ -25,14 +23,6 @@ public class ThreadPortiere extends Thread {
             if(pos.touchingBorder()== -1){
                 x=-x;
             }
-
-
-
-
-
         }
-
-
     }
-
 }

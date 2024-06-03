@@ -1,29 +1,25 @@
 package it.edu.fermimn.penaltykicks;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class  MainActivity extends AppCompatActivity {
 
+    private static int goals = 0;
+
+    private static TextView goalText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ThreadPortiere t= new ThreadPortiere();
-        t.start();
-        /*
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });*/
+        goalText = findViewById(R.id.goals);
+        goalText.setText("Goals: 0");
+    }
 
-
+    public static void addGoal() {
+        goals++;
+        goalText.setText("Goals: " + goals);
     }
 }

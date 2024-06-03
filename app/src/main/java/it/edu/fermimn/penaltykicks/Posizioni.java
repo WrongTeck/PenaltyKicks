@@ -38,9 +38,9 @@ public class Posizioni {
     private int ovaleYStop;
     private View view;
 
-    public int getALTEZZA_PALLA() {
-        return ALTEZZA_PALLA;
-    }
+    private volatile boolean pause = false;
+
+    private ThreadPortiere t = new ThreadPortiere();
 
     private final int ALTEZZA_PALLA = 150;
 
@@ -53,7 +53,7 @@ public class Posizioni {
             screenY;
 
     private Posizioni() {
-
+        t.start();
     }
 
     public static Posizioni getInstance() {
@@ -143,6 +143,22 @@ public class Posizioni {
         this.pallaX = x;
     }
 
+    public synchronized void stopPortiere() {
+        pause = true;
+        try {
+            while(pause) {
+                t.wait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void resumePortiere() {
+        pause = false;
+        t.notify();
+    }
+
     public boolean ballIsTouchedByPortiere() {
         return pallaX < (portiereX + imgPortiere.getWidth()) && (pallaX + imgPalla.getWidth()) > portiereX
                 && pallaY < (portiereY + imgPortiere.getHeight()) && (pallaY + imgPalla.getHeight()) > portiereY;
@@ -151,15 +167,5 @@ public class Posizioni {
     public boolean ballIsInGoal() {
         return pallaX < (portaX + imgPorta.getWidth()) && (pallaX + imgPalla.getWidth()) > portaX
                 && pallaY < (portaY + imgPorta.getHeight()) && (pallaY + imgPalla.getHeight()) > portaY;
-    }
-
-    public void testGoal() {
-        if(ballIsInGoal()) {
-            if(ballIsTouchedByPortiere()) {
-                Toast.makeText(view.getContext(), "Parata", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(view.getContext(), "GOAL", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 }
