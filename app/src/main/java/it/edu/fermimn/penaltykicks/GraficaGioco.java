@@ -13,15 +13,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
 public class GraficaGioco extends View {
-
-    int xpalla, ypalla, xportiere, yportipere;
-
     private Paint paint;
     private Bitmap imgPalla;
     private Bitmap imgPortiere;
@@ -29,9 +27,7 @@ public class GraficaGioco extends View {
 
     private RectF oval;
 
-    private int startX, startY, endX,endY;
-
-    private int deltaX,deltaY;
+    private int endX,endY;
     private boolean isMoving = false;
 
     private void inizializza() {
@@ -79,6 +75,7 @@ public class GraficaGioco extends View {
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         Posizioni pos = Posizioni.getInstance();
+//        Posizioni.getInstance().testGoal();
 
         int h = getHeight();
         int w = getWidth();
@@ -98,8 +95,6 @@ public class GraficaGioco extends View {
 
         canvas.drawBitmap(imgPalla,pos.getPallaX(),pos.getPallaY(),paint);
         canvas.drawBitmap(imgPortiere,pos.getPortiereX(),pos.getPortiereY(),paint);
-
-
 
     }
 
@@ -129,12 +124,10 @@ public class GraficaGioco extends View {
                     int stopY = (int) event.getY();
                     new ThreadPalla(this.endX, this.endY, stopX, stopY).start();
                     inizializzaPalla();
-
                 }
                 return true;
 
-            default :
-
+            default:
                 return super.onTouchEvent(event);
         }
     }

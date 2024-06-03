@@ -1,6 +1,8 @@
 package it.edu.fermimn.penaltykicks;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ThreadPalla extends Thread{
      private int startX, startY, stopX, stopY;
@@ -53,6 +55,9 @@ public class ThreadPalla extends Thread{
                pos.refresh();
 
           }
+
+
+
      }
 
           private boolean isToccata(int posPallaX,int posPallay){

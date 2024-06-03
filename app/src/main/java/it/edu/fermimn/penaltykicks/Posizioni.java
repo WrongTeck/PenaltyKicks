@@ -4,7 +4,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.text.Transliterator;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class Posizioni {
     private static Posizioni instance = null;
@@ -142,6 +144,22 @@ public class Posizioni {
     }
 
     public boolean ballIsTouchedByPortiere() {
-        return false;
+        return pallaX < (portiereX + imgPortiere.getWidth()) && (pallaX + imgPalla.getWidth()) > portiereX
+                && pallaY < (portiereY + imgPortiere.getHeight()) && (pallaY + imgPalla.getHeight()) > portiereY;
+    }
+
+    public boolean ballIsInGoal() {
+        return pallaX < (portaX + imgPorta.getWidth()) && (pallaX + imgPalla.getWidth()) > portaX
+                && pallaY < (portaY + imgPorta.getHeight()) && (pallaY + imgPalla.getHeight()) > portaY;
+    }
+
+    public void testGoal() {
+        if(ballIsInGoal()) {
+            if(ballIsTouchedByPortiere()) {
+                Toast.makeText(view.getContext(), "Parata", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(view.getContext(), "GOAL", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
